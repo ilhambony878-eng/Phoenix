@@ -1,12 +1,7 @@
-add_library(
-    phoenix
-    SHARED
-    main.cpp
-)
+cmake_minimum_required(VERSION 3.22)
 
-find_library(log-lib log)
+project(Phoenix)
 
-target_link_libraries(
-    phoenix
-    ${log-lib}
-)
+set(CMAKE_CXX_STANDARD 17)
+
+add_subdirectory(src)
