@@ -2,39 +2,49 @@ name: Phoenix Build ARM64
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
       - name: Install Ninja
-        run: sudo apt-get update && sudo apt-get install -y ninja-build
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build
 
-      - name: Setup Java
+      - name: Setup Java 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 17
+          java-version: '17'
 
       - name: Setup Android NDK
         uses: nttld/setup-ndk@v1
         with:
           ndk-version: r27c
 
-      - name: Configure
+      - name: Show CMake Version
+        run: cmake --version
+
+      - name: Show NDK Version
+        run: echo "$ANDROID_NDK_ROOT"
+
+      - name: Configure Project
         run: |
           cmake -S . -B build -G Ninja
 
-      - name: Build
+      - name: Build Project
         run: |
-          cmake --build build
+          cmake --build build --verbose
 
-      - name: Upload
+      - name: Upload Build Folder
         uses: actions/upload-artifact@v4
         with:
           name: phoenix-build
-          path: build
+          path: build/
