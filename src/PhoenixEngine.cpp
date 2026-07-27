@@ -3,6 +3,7 @@
 #include "ShaderManager.h"
 #include "FrameBuffer.h"
 #include "OpenGLContext.h"
+#include "ShaderLoader.h"
 #include <android/log.h>
 
 #define TAG "PHOENIX"
@@ -17,12 +18,14 @@ void PhoenixEngine::Init()
     OpenGLContext::Init();
     Renderer::Init();
     ShaderManager::Init();
+    ShaderLoader::Init();
     FrameBuffer::Init();
 }
 
 void PhoenixEngine::Shutdown()
 {
     FrameBuffer::Shutdown();
+    ShaderLoader::Shutdown();
     ShaderManager::Shutdown();
     Renderer::Shutdown();
     OpenGLContext::Shutdown();
