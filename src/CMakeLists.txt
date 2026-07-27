@@ -12,7 +12,10 @@ add_library(
 
 find_library(log-lib log)
 
+find_library(gles-lib GLESv3)
+
 target_link_libraries(
     phoenix
     ${log-lib}
+    ${gles-lib}
 )
