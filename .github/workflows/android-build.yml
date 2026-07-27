@@ -1,0 +1,25 @@
+name: Phoenix Android Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Placeholder
+        run: |
+          mkdir output
+          echo "Phoenix Build Started" > output/libphoenix.so
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: libphoenix
+          path: output/libphoenix.so
