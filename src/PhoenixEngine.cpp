@@ -5,6 +5,7 @@
 #include "OpenGLContext.h"
 #include "ShaderLoader.h"
 #include "DefaultShader.h"
+#include "VertexBuffer.h"
 
 #include <android/log.h>
 
@@ -32,10 +33,14 @@ void PhoenixEngine::Init()
     ShaderLoader::Init();
 
     FrameBuffer::Init();
+
+    VertexBuffer::Init();
 }
 
 void PhoenixEngine::Shutdown()
 {
+    VertexBuffer::Shutdown();
+
     FrameBuffer::Shutdown();
 
     ShaderLoader::Shutdown();
