@@ -4,6 +4,7 @@ class Renderer
 {
 public:
     static void Init();
-    static void RenderFrame();
+    static void BeginFrame();
+    static void EndFrame();
     static void Shutdown();
 };
