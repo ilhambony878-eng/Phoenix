@@ -1,5 +1,6 @@
 #include "PhoenixEngine.h"
 #include "Renderer.h"
+#include "ShaderManager.h"
 #include <android/log.h>
 
 #define TAG "PHOENIX"
@@ -12,10 +13,12 @@ void PhoenixEngine::Init()
         "Phoenix Engine Initialized");
 
     Renderer::Init();
+    ShaderManager::Init();
 }
 
 void PhoenixEngine::Shutdown()
 {
+    ShaderManager::Shutdown();
     Renderer::Shutdown();
 
     __android_log_print(
