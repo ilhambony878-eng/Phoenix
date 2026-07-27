@@ -1,65 +1,62 @@
 #include "ShaderManager.h"
+
 #include <android/log.h>
 #include <GLES3/gl3.h>
 
 #define TAG "PHOENIX"
 
-static GLuint gShaderProgram = 0;
+static GLuint gProgram = 0;
 
 void ShaderManager::Init()
 {
     __android_log_print(
         ANDROID_LOG_INFO,
         TAG,
-        "Loading GLSL shaders...");
+        "ShaderManager Init");
 }
 
-void ShaderManager::Load(const char* vertex,
-                         const char* fragment)
+void ShaderManager::Load(
+    const char* vertexShader,
+    const char* fragmentShader)
 {
-    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vertex, nullptr);
-    glCompileShader(vertexShader);
+    GLuint vs = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(vs, 1, &vertexShader, nullptr);
+    glCompileShader(vs);
 
-    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragment, nullptr);
-    glCompileShader(fragmentShader);
+    GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fs, 1, &fragmentShader, nullptr);
+    glCompileShader(fs);
 
-    gShaderProgram = glCreateProgram();
+    gProgram = glCreateProgram();
 
-    glAttachShader(gShaderProgram, vertexShader);
-    glAttachShader(gShaderProgram, fragmentShader);
+    glAttachShader(gProgram, vs);
+    glAttachShader(gProgram, fs);
 
-    glLinkProgram(gShaderProgram);
+    glLinkProgram(gProgram);
 
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
+    glDeleteShader(vs);
+    glDeleteShader(fs);
 
     __android_log_print(
         ANDROID_LOG_INFO,
         TAG,
-        "Shader Compiled Successfully");
+        "Shader Linked");
 }
 
 void ShaderManager::Use()
 {
-    if (gShaderProgram != 0)
+    if (gProgram != 0)
     {
-        glUseProgram(gShaderProgram);
+        glUseProgram(gProgram);
     }
-
-    __android_log_print(
-        ANDROID_LOG_INFO,
-        TAG,
-        "Using Shader");
 }
 
 void ShaderManager::Shutdown()
 {
-    if (gShaderProgram != 0)
+    if (gProgram != 0)
     {
-        glDeleteProgram(gShaderProgram);
-        gShaderProgram = 0;
+        glDeleteProgram(gProgram);
+        gProgram = 0;
     }
 
     __android_log_print(
