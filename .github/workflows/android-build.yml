@@ -2,14 +2,16 @@ name: Phoenix Android Build
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -22,12 +24,13 @@ jobs:
         with:
           ndk-version: r27c
 
-      - name: Check NDK
+      - name: Verify Project Structure
         run: |
-          echo "NDK installed successfully"
+          echo "Repository files:"
+          find .
 
-      - name: Upload Logs
+      - name: Upload Source
         uses: actions/upload-artifact@v4
         with:
-          name: build-log
+          name: phoenix-source
           path: .
