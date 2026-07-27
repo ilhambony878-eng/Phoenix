@@ -1,7 +1,17 @@
-cmake_minimum_required(VERSION 3.22)
+add_library(
+    phoenix
+    SHARED
+    main.cpp
+    PhoenixEngine.cpp
+    Renderer.cpp
+    ShaderManager.cpp
+    FrameBuffer.cpp
+    OpenGLContext.cpp
+)
 
-project(Phoenix)
+find_library(log-lib log)
 
-set(CMAKE_CXX_STANDARD 17)
-
-add_subdirectory(src)
+target_link_libraries(
+    phoenix
+    ${log-lib}
+)
