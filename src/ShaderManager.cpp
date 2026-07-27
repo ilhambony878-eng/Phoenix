@@ -3,14 +3,25 @@
 
 #define TAG "PHOENIX"
 
-bool ShaderManager::Init()
+void ShaderManager::Init()
 {
     __android_log_print(
         ANDROID_LOG_INFO,
         TAG,
-        "Shader Manager Initialized");
+        "Loading GLSL shaders...");
+}
 
-    return true;
+void ShaderManager::Load(const char* vertex,
+                         const char* fragment)
+{
+    __android_log_print(
+        ANDROID_LOG_INFO,
+        TAG,
+        "Shader Loaded");
+}
+
+void ShaderManager::Use()
+{
 }
 
 void ShaderManager::Shutdown()
@@ -18,5 +29,5 @@ void ShaderManager::Shutdown()
     __android_log_print(
         ANDROID_LOG_INFO,
         TAG,
-        "Shader Manager Shutdown");
+        "ShaderManager Shutdown");
 }
