@@ -3,20 +3,39 @@
 
 #define TAG "PHOENIX"
 
-bool ShaderLoader::Init()
+static const char* gVertexShader = R"(#version 300 es
+layout(location=0) in vec3 aPos;
+void main()
 {
-    __android_log_print(
-        ANDROID_LOG_INFO,
-        TAG,
-        "Shader Loader Initialized");
+    gl_Position = vec4(aPos,1.0);
+}
+)";
 
-    return true;
+static const char* gFragmentShader = R"(#version 300 es
+precision mediump float;
+out vec4 FragColor;
+void main()
+{
+    FragColor = vec4(1.0,0.3,0.1,1.0);
+}
+)";
+
+void ShaderLoader::Init()
+{
+    __android_log_print(ANDROID_LOG_INFO, TAG, "ShaderLoader Init");
 }
 
 void ShaderLoader::Shutdown()
 {
-    __android_log_print(
-        ANDROID_LOG_INFO,
-        TAG,
-        "Shader Loader Shutdown");
+    __android_log_print(ANDROID_LOG_INFO, TAG, "ShaderLoader Shutdown");
+}
+
+const char* ShaderLoader::GetDefaultVertexShader()
+{
+    return gVertexShader;
+}
+
+const char* ShaderLoader::GetDefaultFragmentShader()
+{
+    return gFragmentShader;
 }
