@@ -4,19 +4,22 @@
 #define TAG "PHOENIX"
 
 static const char* gVertexShader = R"(#version 300 es
-layout(location=0) in vec3 aPos;
+layout(location = 0) in vec3 aPos;
+
 void main()
 {
-    gl_Position = vec4(aPos,1.0);
+    gl_Position = vec4(aPos, 1.0);
 }
 )";
 
 static const char* gFragmentShader = R"(#version 300 es
 precision mediump float;
+
 out vec4 FragColor;
+
 void main()
 {
-    FragColor = vec4(1.0,0.3,0.1,1.0);
+    FragColor = vec4(1.0, 0.3, 0.1, 1.0);
 }
 )";
 
