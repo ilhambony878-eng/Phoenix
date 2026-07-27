@@ -9,6 +9,7 @@ add_library(
     FrameBuffer.cpp
     OpenGLContext.cpp
     DefaultShader.cpp
+    VertexBuffer.cpp
 )
 
 target_include_directories(
