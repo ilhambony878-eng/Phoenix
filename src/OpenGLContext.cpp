@@ -3,14 +3,12 @@
 
 #define TAG "PHOENIX"
 
-bool OpenGLContext::Init()
+void OpenGLContext::Init()
 {
     __android_log_print(
         ANDROID_LOG_INFO,
         TAG,
         "OpenGL ES Context Initialized");
-
-    return true;
 }
 
 void OpenGLContext::Shutdown()
