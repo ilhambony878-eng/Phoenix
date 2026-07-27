@@ -1,0 +1,5 @@
+Project : Phoenix
+Version : 0.1 Alpha
+Target  : Android ARM64
+NDK     : r27
+Compiler: Clang
