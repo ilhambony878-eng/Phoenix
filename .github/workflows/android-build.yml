@@ -2,24 +2,32 @@ name: Phoenix Android Build
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Build Placeholder
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Setup Android NDK
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r27c
+
+      - name: Check NDK
         run: |
-          mkdir output
-          echo "Phoenix Build Started" > output/libphoenix.so
+          echo "NDK installed successfully"
 
-      - name: Upload Artifact
+      - name: Upload Logs
         uses: actions/upload-artifact@v4
         with:
-          name: libphoenix
-          path: output/libphoenix.so
+          name: build-log
+          path: .
