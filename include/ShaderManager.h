@@ -6,8 +6,8 @@ public:
     static void Init();
 
     static void Load(
-        const char* vertex,
-        const char* fragment);
+        const char* vertexShader,
+        const char* fragmentShader);
 
     static void Use();
 
