@@ -7,6 +7,7 @@ add_library(
     ShaderManager.cpp
     FrameBuffer.cpp
     OpenGLContext.cpp
+    ShaderLoader.cpp
 )
 
 find_library(log-lib log)
