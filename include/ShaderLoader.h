@@ -3,6 +3,9 @@
 class ShaderLoader
 {
 public:
-    static bool Init();
+    static void Init();
     static void Shutdown();
+
+    static const char* GetDefaultVertexShader();
+    static const char* GetDefaultFragmentShader();
 };
