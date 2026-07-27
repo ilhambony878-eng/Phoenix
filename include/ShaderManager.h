@@ -3,6 +3,13 @@
 class ShaderManager
 {
 public:
-    static bool Init();
+    static void Init();
+
+    static void Load(
+        const char* vertex,
+        const char* fragment);
+
+    static void Use();
+
     static void Shutdown();
 };
