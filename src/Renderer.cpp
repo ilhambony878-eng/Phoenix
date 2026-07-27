@@ -11,18 +11,22 @@ void Renderer::Init()
         "Renderer Initialized");
 }
 
-void Renderer::RenderFrame()
-{
-    __android_log_print(
-        ANDROID_LOG_INFO,
-        TAG,
-        "Rendering Frame...");
-}
-
 void Renderer::Shutdown()
 {
     __android_log_print(
         ANDROID_LOG_INFO,
         TAG,
         "Renderer Shutdown");
+}
+
+void Renderer::BeginFrame()
+{
+}
+
+void Renderer::EndFrame()
+{
+}
+
+void Renderer::Render()
+{
 }
